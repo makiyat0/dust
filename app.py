@@ -17,11 +17,11 @@ def dosyadan_okuyucu(dosya_adi):
 def memur_kehanetci():
     bugun = date.today().isoformat()
     random.seed(bugun)
-    baslangic = dosyadan_okuyucu("baslangic.txt")
+    sifat = dosyadan_okuyucu("sifat.txt")
     ozne = dosyadan_okuyucu("ozne.txt")
     yuklem = dosyadan_okuyucu("yuklem.txt")
 
-    return f"{random.choice(baslangic)} {random.choice(ozne)} {random.choice(yuklem)}"
+    return f"{random.choice(sifat)} {random.choice(ozne)} {random.choice(yuklem)}"
     
 
 

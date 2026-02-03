@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 import os
 import random
 from flask import Flask, render_template
@@ -101,6 +101,28 @@ def hakkinda():
 def kehanetci():
     kehanet = memur_kehanetci()
     return render_template("kehanetci.html", kehanet=kehanet)
+
+def oguz_cumle(filename):
+    now = datetime.now()
+
+    # Saat bazlı seed (yıl, ay, gün, saat)
+    seed = now.year * 1000000 + now.month * 10000 + now.day * 100 + now.hour
+    path = filename
+    random.seed(seed)
+    with open(path, "r", encoding="utf-8") as f:
+        cumle = [line.strip() for line in f if line.strip()]
+
+
+    return random.choice(cumle)
+
+
+@app.route("/oguz")
+def oguz():
+    cümlemiz = oguz_cumle("oyunlu_tehlike.txt")
+    return render_template("oguz.html",cümlemiz=cümlemiz)
+
+
+
 
 # --------------------
 # RUN

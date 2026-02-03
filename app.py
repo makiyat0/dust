@@ -17,6 +17,7 @@ def load_words(filename):
     with open(path, "r", encoding="utf-8") as f:
         return [line.strip() for line in f if line.strip()]
 
+
 # --------------------
 # FİİLİ GENİŞ ZAMANA ÇEK
 # --------------------
@@ -110,7 +111,7 @@ def oguz_cumle(filename):
     path = filename
     random.seed(seed)
     with open(path, "r", encoding="utf-8") as f:
-        cumle = [line.strip() for line in f if line.strip()]
+        cumle = f.read().splitlines()
 
 
     return random.choice(cumle)

@@ -1,0 +1,34 @@
+tamam 👍
+işte doğrudan kullanabileceğin, genel ve nötr anlamlı 30 adet nesne:
+
+📄 nesneler.txt — 30 adet
+zamanı
+anı
+sessizliği
+boşluğu
+beklentiyi
+gerçeği
+hayali
+umudu
+korkuyu
+izleri
+yolu
+mesafeyi
+dengeyi
+süreci
+anımsamayı
+kararı
+yükü
+sınırı
+döngüyü
+soruyu
+cevabı
+ihtimali
+izlenimi
+etkiyi
+anlamı
+düşünceyi
+yapıyı
+anıtsallığı
+belirsizliği
+sonu

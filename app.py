@@ -122,6 +122,11 @@ def oguz():
     cümlemiz = oguz_cumle("oyunlu_tehlike.txt")
     return render_template("oguz.html",cümlemiz=cümlemiz)
 
+@app.route("/thenullmoon")
+def null():
+    moon = "doldurmaya çalışıyorum burayı"
+    return render_template("thenullmoon.html", moon=moon)
+
 
 
 

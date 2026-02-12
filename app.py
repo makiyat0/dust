@@ -7,6 +7,13 @@ app = Flask(__name__)
 
 BASE_PATH = "kehanet_araclari"
 
+undr_cs = ["üzgünüm buraı bitiremedim daha",
+           "yapım aşamasında",
+           "erken öten horoz",
+           "saskın gelme sözlerim kayıp ayıp ediyoru mkendime",
+           "en azından tarihte iz bıraksın bu sayfa"]
+
+
 print("CALISILAN KLASOR:", os.getcwd())
 
 # --------------------
@@ -16,6 +23,14 @@ def load_words(filename):
     path = os.path.join(BASE_PATH, filename)
     with open(path, "r", encoding="utf-8") as f:
         return [line.strip() for line in f if line.strip()]
+
+
+def yoksayfa(yapim_asamasi):
+    bugun = date.today().isoformat()
+    random.seed(bugun)
+    yapim_asamasi = undr_cs
+    return random.choice(yapim_asamasi)
+
 
 
 # --------------------
@@ -124,7 +139,7 @@ def oguz():
 
 @app.route("/thenullmoon")
 def null():
-    moon = "doldurmaya çalışıyorum burayı"
+    moon = yoksayfa(undr_cs)
     return render_template("thenullmoon.html", moon=moon)
 
 

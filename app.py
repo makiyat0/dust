@@ -140,7 +140,10 @@ def oguz():
 @app.route("/thenullmoon")
 def null():
     moon = yoksayfa(undr_cs)
-    return render_template("thenullmoon.html", moon=moon)
+    giselle = "özür dilerim, kedni kafamda halletmem gereken şeyler var sesninle konuşmalarımız bazı arkaya attığım gerçekleri tekrar değerlendirmek zorunda bıraktı iyi oldu aslında ama içinden çıktığımda hayatımın neleri değişecek ve neleri aynı kalacak bilmiyorum (bu cümle 14 02 2026 tarihinde yazılmıştır) "
+    syf = "68. sayfadayım"
+
+    return render_template("thenullmoon.html", moon=moon, giselle=giselle, syf=syf)
 
 
 

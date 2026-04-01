@@ -31,6 +31,12 @@ def yoksayfa(yapim_asamasi):
     yapim_asamasi = undr_cs
     return random.choice(yapim_asamasi)
 
+def sanki_herkes_sen(dosya="olusayaziyor.txt"):
+    with open(dosya, "r", encoding="utf-8") as f:
+        satirlar = [line.strip() for line in f if line.strip()]
+
+    return random.choice(satirlar)
+
 
 
 # --------------------
@@ -119,10 +125,10 @@ def kehanetci():
     return render_template("kehanetci.html", kehanet=kehanet)
 
 def oguz_cumle(filename):
-    now = datetime.now()
 
-    # Saat bazlı seed (yıl, ay, gün, saat)
-    seed = now.year * 1000000 + now.month * 10000 + now.day * 100 + now.hour
+
+
+    seed = date.today().isoformat()
     path = filename
     random.seed(seed)
     with open(path, "r", encoding="utf-8") as f:
@@ -131,6 +137,10 @@ def oguz_cumle(filename):
 
     return random.choice(cumle)
 
+@app.route("/sarki")
+def sarki():
+    track_id = sanki_herkes_sen()
+    return render_template("sarki.html", track_id=track_id)
 
 @app.route("/oguz")
 def oguz():
@@ -142,8 +152,10 @@ def null():
     moon = yoksayfa(undr_cs)
     giselle = "özür dilerim, kedni kafamda halletmem gereken şeyler var sesninle konuşmalarımız bazı arkaya attığım gerçekleri tekrar değerlendirmek zorunda bıraktı iyi oldu aslında ama içinden çıktığımda hayatımın neleri değişecek ve neleri aynı kalacak bilmiyorum (bu cümle 14 02 2026 tarihinde yazılmıştır) "
     syf = "79. sayfadayım(15 02 2026)"
+    track_id = sanki_herkes_sen()
 
-    return render_template("thenullmoon.html", moon=moon, giselle=giselle, syf=syf)
+
+    return render_template("thenullmoon.html", moon=moon, giselle=giselle, syf=syf,track_id=track_id)
 
 
 

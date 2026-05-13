@@ -32,6 +32,8 @@ def yoksayfa(yapim_asamasi):
     return random.choice(yapim_asamasi)
 
 def sanki_herkes_sen(dosya="olusayaziyor.txt"):
+    bugun = date.today().isoformat()
+    random.seed(bugun)
     with open(dosya, "r", encoding="utf-8") as f:
         satirlar = [line.strip() for line in f if line.strip()]
 
@@ -149,13 +151,8 @@ def oguz():
 
 @app.route("/thenullmoon")
 def null():
-    moon = yoksayfa(undr_cs)
-    giselle = "özür dilerim, kedni kafamda halletmem gereken şeyler var sesninle konuşmalarımız bazı arkaya attığım gerçekleri tekrar değerlendirmek zorunda bıraktı iyi oldu aslında ama içinden çıktığımda hayatımın neleri değişecek ve neleri aynı kalacak bilmiyorum (bu cümle 14 02 2026 tarihinde yazılmıştır) "
-    syf = "79. sayfadayım(15 02 2026)"
     track_id = sanki_herkes_sen()
-
-
-    return render_template("thenullmoon.html", moon=moon, giselle=giselle, syf=syf,track_id=track_id)
+    return render_template("thenullmoon.html",track_id=track_id)
 
 
 

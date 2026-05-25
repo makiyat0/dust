@@ -126,6 +126,10 @@ def kehanetci():
     kehanet = memur_kehanetci()
     return render_template("kehanetci.html", kehanet=kehanet)
 
+@app.route("/denence")
+def denence():
+    return render_template("denence.html")
+
 def oguz_cumle(filename):
 
 

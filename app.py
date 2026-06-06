@@ -1,9 +1,16 @@
 from datetime import datetime,date
 import os
 import random
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+
 
 app = Flask(__name__)
+
+@app.before_request
+def log_request():
+    ip = request.headers.get("X-Forwarded-For", request.remote_addr)
+    print("IP:", ip)
+    print("URL:", request.path)
 
 BASE_PATH = "kehanet_araclari"
 
@@ -157,6 +164,8 @@ def oguz():
 def null():
     track_id = sanki_herkes_sen()
     return render_template("thenullmoon.html",track_id=track_id)
+
+
 
 
 

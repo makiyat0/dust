@@ -134,10 +134,7 @@ def kehanetci():
 def denence():
     return render_template("denence.html")
 
-@app.route("/bunu_gorme")
-def bunu_gorme():
-    ip = request.headers.get("X-Forwarded-For", request.remote_addr)
-    return f"IP = {ip}"
+
 
 
 

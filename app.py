@@ -1,16 +1,13 @@
 from datetime import datetime,date
-import os
+import os,sys
 import random
 from flask import Flask, render_template, request
 
 
 app = Flask(__name__)
 
-@app.before_request
-def log_request():
-    ip = request.headers.get("X-Forwarded-For", request.remote_addr)
-    print("IP:", ip)
-    print("URL:", request.path)
+
+
 
 BASE_PATH = "kehanet_araclari"
 
@@ -137,6 +134,13 @@ def kehanetci():
 def denence():
     return render_template("denence.html")
 
+@app.route("/bunu_gorme")
+def bunu_gorme():
+    ip = request.headers.get("X-Forwarded-For", request.remote_addr)
+    return f"IP = {ip}"
+
+
+
 def oguz_cumle(filename):
 
 
@@ -164,6 +168,13 @@ def oguz():
 def null():
     track_id = sanki_herkes_sen()
     return render_template("thenullmoon.html",track_id=track_id)
+
+@app.before_request
+def log_request():
+    ip = request.headers.get("X-Forwarded-For", request.remote_addr)
+    print(f"IP: {ip}", flush=True)
+    print(f"PATH: {request.path}", flush=True)
+    sys.stdout.flush()
 
 
 

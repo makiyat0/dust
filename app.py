@@ -20,9 +20,6 @@ undr_cs = ["üzgünüm buraı bitiremedim daha",
 
 print("CALISILAN KLASOR:", os.getcwd())
 
-# --------------------
-# DOSYADAN OKUMA
-# --------------------
 def load_words(filename):
     path = os.path.join(BASE_PATH, filename)
     with open(path, "r", encoding="utf-8") as f:
@@ -138,23 +135,12 @@ def ben1():
 def sen2():
     return render_template("sen2.html")
 
-
-
-
-
-
-
 def oguz_cumle(filename):
-
-
-
     seed = date.today().isoformat()
     path = filename
     random.seed(seed)
     with open(path, "r", encoding="utf-8") as f:
         cumle = f.read().splitlines()
-
-
     return random.choice(cumle)
 
 @app.route("/sarki")

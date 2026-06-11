@@ -135,6 +135,10 @@ def ben1():
 def sen2():
     return render_template("sen2.html")
 
+@app.route("/o3")
+def o3():
+    return render_template("o3.html")
+
 def oguz_cumle(filename):
     seed = date.today().isoformat()
     path = filename

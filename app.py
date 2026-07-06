@@ -127,6 +127,10 @@ def kehanetci():
     kehanet = memur_kehanetci()
     return render_template("kehanetci.html", kehanet=kehanet)
 
+@app.route("/bulut")
+def bulut():
+    return render_template("bulut.html")
+
 @app.route("/ben1")
 def ben1():
     return render_template("ben1.html")

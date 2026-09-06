@@ -1,7 +1,12 @@
 import json
 import os
+import psycopg2
 
-DOSYA_YOLU = "veri.json"
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+
+def _baglanti_ac():
+    return psycopg2.connect(DATABASE_URL)
 
 
 def inception():
@@ -17,19 +22,58 @@ def inception():
     return board
 
 
+def veritabanini_hazirla():
+    """Uygulama açılırken bir kere çağrılır - tablo yoksa oluşturur."""
+    conn = _baglanti_ac()
+    cur = conn.cursor()
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS durum (
+            id INTEGER PRIMARY KEY,
+            masa TEXT,
+            yenenler TEXT
+        )
+    """)
+    conn.commit()
+    cur.close()
+    conn.close()
+
+
 def veriyi_yukle():
-    if os.path.exists(DOSYA_YOLU):
-        with open(DOSYA_YOLU, "r") as f:
-            veri = json.load(f)
-            return veri["masa"], veri["yenenler"]
-    return inception(), []
+    conn = _baglanti_ac()
+    cur = conn.cursor()
+    cur.execute("SELECT masa, yenenler FROM durum WHERE id = 1")
+    satir = cur.fetchone()
+
+    if satir is None:
+        # İlk açılış - başlangıç tahtasını veritabanına yaz
+        baslangic = inception()
+        cur.execute(
+            "INSERT INTO durum (id, masa, yenenler) VALUES (1, %s, %s)",
+            (json.dumps(baslangic), json.dumps([]))
+        )
+        conn.commit()
+        cur.close()
+        conn.close()
+        return baslangic, []
+
+    cur.close()
+    conn.close()
+    return json.loads(satir[0]), json.loads(satir[1])
 
 
 def veriyi_kaydet():
-    with open(DOSYA_YOLU, "w") as f:
-        json.dump({"masa": masa, "yenenler": yenenler}, f)
+    conn = _baglanti_ac()
+    cur = conn.cursor()
+    cur.execute(
+        "UPDATE durum SET masa = %s, yenenler = %s WHERE id = 1",
+        (json.dumps(masa), json.dumps(yenenler))
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
 
 
+veritabanini_hazirla()
 masa, yenenler = veriyi_yukle()
 
 

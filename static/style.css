@@ -1,0 +1,58 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.tahta-alani {
+    display: grid;
+    grid-template-columns: 30px 720px;
+    grid-template-rows: 720px 30px;
+    width: fit-content;
+    margin: 40px auto;
+}
+
+#satir-etiketleri {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#satir-etiketleri div {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#tahta {
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    width: 720px;
+    height: 720px;
+    background-image: url("/static/images/board.png");
+    background-size: cover;
+}
+
+#sutun-etiketleri {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+}
+
+#sutun-etiketleri div {
+    width: 90px;
+    text-align: center;
+}
+
+.kare {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+}
+
+.tas-resmi {
+    width: 100%;
+    height: 100%;
+}

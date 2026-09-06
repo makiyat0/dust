@@ -1,8 +1,8 @@
 from datetime import datetime,date
 import os,sys
 import random
-from flask import Flask, render_template, request
-
+from flask import Flask, render_template, request,render_template, jsonify, request
+import satranc
 
 app = Flask(__name__)
 
@@ -172,7 +172,17 @@ def log_request():
     print(f"IP: {ip}", flush=True)
     print(f"PATH: {request.path}", flush=True)
     sys.stdout.flush()
-
+@app.route('/chessy')
+def chessy():
+    return  render_template('chessy.html')
+@app.route('/api/board')
+def api_board():
+    return jsonify({"masa":satranc.masa, "yenenler":satranc.yenenler})
+@app.route('/api/move', methods=['POST'])
+def api_move():
+    data = request.get_json()
+    basarili, hata = satranc.oynatici(data["from"],data["to"])
+    return jsonify({"basarili":basarili, "hata":hata})
 
 
 
